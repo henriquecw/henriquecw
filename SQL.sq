@@ -41,4 +41,12 @@ CREATE TABLE passengers (
  SELECT origin, destination, name from flights join passengers ON passengers.flight_id = flights.id where name = 'Alice';
 
  SELECT origin, destination, name from flights left join passengers ON passengers.flight_id = flights.id;
- 
+
+ SELECT flight_id FROM passengers GROUP BY flight_id HAVING COUNT(*) > 1;
+
+ SELECT * FROM flights WHERE id IN (SELECT flight_id FROM passengers GROUP BY flight_id HAVING COUNT(*) > 1);
+
+export DATABASE_URL="127.0.0.1:5432"
+export PDATABASE_USER="maddog"
+export DATABASE_PW="fhs7812"
+export DATABASE_DB="maddog"
